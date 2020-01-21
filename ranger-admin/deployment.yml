@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ranger-admin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ranger-admin
+  template:
+    metadata:
+      labels:
+        app: ranger-admin
+    spec:
+      containers:
+      - name: ranger-admin
+        image: ashikansal/ranger_admin 
+        ports:
+        - containerPort: 6080
+          protocol: TCP
+        - containerPort: 6083
+        command: ["/bin/sh"]
+        args: ["-c", "while true; do echo hello; sleep 10;done"]
